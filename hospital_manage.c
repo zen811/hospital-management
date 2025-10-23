@@ -4,13 +4,14 @@
 void show_patient(char (*ptr)[7][20], int Sno);
 void show_list(char (*ptr)[7][20], int size);
 void add_patient(char (*ptr)[7][20], char pt_info[7][20], int size);
-void remove_patient();
+void remove_patient(char (*ptr)[7][20], int S_no, int size);
 int main()
 {
     int i, num;
     int size = 1;
     char list[max][7][20] = {{"S_No", "Name", "Age", "B_Group", "height", "weight", "bmi"}};
     char (*ptr)[7][20] = list;
+    int s_no;
     printf("Welcome to hospital management system By Zen\n");
 
 main_menu:
@@ -56,6 +57,10 @@ main_menu:
         add_patient(list, pt_inf, size);
         show_list(ptr, size);
         goto main_menu;
+    case 4:
+        printf("Enter S_no of the ");
+        scanf("%d", &s_no);
+        remove_patient(ptr, s_no, size);
     case 5:
         break;
     default:
@@ -91,4 +96,17 @@ void add_patient(char (*ptr)[7][20], char pt_info[7][20], int size)
     {
         strcpy(ptr[size][j], pt_info[j]);
     }
+}
+void remove_patient(char (*ptr)[7][20], int S_no, int size)
+{
+    int i, j;
+    for (i = S_no; i < size + 1;)
+    {
+        for (j = 0; j < 7; j++)
+            ;
+        {
+            strcpy(ptr[i][j], ptr[i + 1][j]);
+        }
+    }
+    size--;
 }
